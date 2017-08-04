@@ -1,5 +1,15 @@
 <?php
 
+require('fpdf/fpdf.php');
+
+$pdf = new FPDF();
+$pdf->AddPage();
+$pdf->SetFont('Arial','B',16);
+$pdf->Cell(40,10,'Hello World !');
+$pdf->Output();
+
+
+
 class Document {
     public $phrases=[];
 
@@ -14,6 +24,10 @@ class Document {
             }
             echo '<br>';
         }
+    }
+
+    function test(){
+        var_dump(get_object_vars($this));
     }
 }
 
@@ -33,3 +47,5 @@ for($i=0; $i<count($liste); $i++){
 }
 
 $doc->affiche();
+echo "<br><br>";
+$doc->test();
