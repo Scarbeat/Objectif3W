@@ -25,6 +25,7 @@ class Phrase {
 }
 
 
+
 $phrase1=new Phrase('je','vais','au ciné');
 $phrase1->affichePhrase();
 $phrase1->mettrePluriel();
