@@ -21,6 +21,7 @@ class Voiture {
 
 $car= new Voiture();
 
+
 $car->deplacement(1200);
 $car->deplacement(1200);
 $car->deplacement(800);

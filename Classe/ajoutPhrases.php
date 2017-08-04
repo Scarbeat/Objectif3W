@@ -22,6 +22,7 @@ $liste=[
     ['je','vais','au ciné'],
     ['il','assiste','à un match'],
     ['il','pleut','dehors'],
+    ['ils','partent',' en vacances']
 ];
 
 
