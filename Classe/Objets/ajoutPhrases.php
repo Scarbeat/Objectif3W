@@ -17,7 +17,7 @@ class Document {
         $this->phrases[] = $phrase;
     }
 
-    function affiche(){
+    function affiche() {
         foreach ($this->phrases as $key => $value) {
             foreach ($value as $key => $donnee) {
                 echo $donnee." ";

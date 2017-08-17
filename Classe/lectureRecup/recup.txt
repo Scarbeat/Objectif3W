@@ -1,0 +1,297 @@
+<?php
+
+require('fpdf/fpdf.php');
+
+$pdf = new FPDF();
+$pdf->AddPage();
+$pdf->SetFont('Arial','B',16);
+$pdf->Cell(40,10,'Hello World !');
+$pdf->Output();
+
+
+
+class Document {
+    public $phrases=[];
+
+    function addPhrase($phrase){
+        $this->phrases[] = $phrase;
+    }
+
+    function affiche() {
+        foreach ($this->phrases as $key => $value) {
+            foreach ($value as $key => $donnee) {
+                echo $donnee." ";
+            }
+            echo '<br>';
+        }
+    }
+
+    function test(){
+        var_dump(get_object_vars($this));
+    }
+}
+
+
+$liste=[
+    ['je','vais','au ciné'],
+    ['il','assiste','à un match'],
+    ['il','pleut','dehors'],
+    ['ils','partent',' en vacances']
+];
+
+
+$doc = new Document();
+
+for($i=0; $i<count($liste); $i++){
+    $doc->addPhrase($liste[$i]);
+}
+
+$doc->affiche();
+echo "<br><br>";
+$doc->test();
+<?php
+require 'C:/Users/webuser/Desktop/blog/vendor/autoload.php';
+
+use Carbon\Carbon;
+
+printf("Now: %s", Carbon::now());
+<?php
+
+interface iConvertisseur {
+    public function Convert($devise, $montant);
+}
+
+class MonnaieConvertisseur implements iConvertisseur {
+
+    private $taux = [
+        'USD' => 1.1797,
+        'CFA' => 657.43
+    ];
+
+    public function Convert($devise, $montant) {
+        
+    }
+}
+<?php
+//
+// interface carCouponGenerator {
+//   function addSeasonDiscount();
+//   function ajoutStockDiscount();
+// }
+
+// implements the interface for BMW.////////////////////////////////////////////
+class bmwCouponGenerator /*implements carCouponGenerator*/ {
+  private $discount = 0;
+  private $isHighSeason = false;
+  private $bigStock = true;
+
+  public function addSeasonDiscount() {
+    if(!$this->isHighSeason) return $this->discount += 5;
+    return $this->discount +=0;
+  }
+
+  public function ajoutStockDiscount() {
+    if($this->bigStock) return $this->discount += 7;
+    return $this->discount +=0;
+  }
+}
+
+// implements the interface for Mercedes.///////////////////////////////////////
+class mercedesCouponGenerator /*implements carCouponGenerator*/ {
+  private $discount = 0;
+  private $isHighSeason = false;
+  private $bigStock = true;
+
+  public function addSeasonDiscount() {
+    if(!$this->isHighSeason) return $this->discount += 4;
+    return $this->discount +=0;
+  }
+
+  public function ajoutStockDiscount() {
+    if($this->bigStock) return $this->discount += 10;
+    return $this->discount +=0;
+  }
+}
+
+// Create object from the alternative classes.//////////////////////////////////
+function couponObjectGenerator($car) {
+  if($car == "bmw") {
+    $carObj = new bmwCouponGenerator;
+  }
+  else if($car == "mercedes") {
+    $carObj = new mercedesCouponGenerator;
+  }
+  return $carObj;
+}
+
+// The client class generates coupon from the object of choice./////////////////
+class couponGenerator {
+  private $carCoupon;
+
+  // Get only objects that belong to the interface./////////////////////////////
+  public function __construct(/*carCouponGenerator*/ $carCoupon) {
+    $this->carCoupon = $carCoupon;
+  }
+
+  // Use the object's methods to generate the coupon.///////////////////////////
+  public function getCoupon() {
+    $discount = $this->carCoupon->addSeasonDiscount();
+    $discount = $this->carCoupon->ajoutStockDiscount();
+    return $coupon = "Get {$discount}% off the price of your new car.";
+  }
+}
+
+// Test the code.///////////////////////////////////////////////////////////////
+$car = "bmw";
+$carObj = couponObjectGenerator($car);
+$couponGenerator = new couponGenerator($carObj);
+echo $couponGenerator->getCoupon();
+
+echo "<hr />";
+
+$car = "mercedes";
+$carObj = couponObjectGenerator($car);
+$couponGenerator = new couponGenerator($carObj);
+echo $couponGenerator->getCoupon();
+<?php
+
+class Phrase {
+    public $sujet;
+    public $verbe;
+    public $complement;
+
+
+    function __construct($suj,$verb,$complt){
+        $this->sujet=$suj;
+        $this->verbe=$verb;
+        $this->complement=$complt;
+    }
+    function affichePhrase(){
+        echo $this->sujet.' '.$this->verbe.' '.$this->complement.'<br>';
+    }
+    function mettrePluriel(){
+        if ($this->sujet == 'je'){
+            $this->sujet = 'nous';
+        }
+        if ($this->sujet == 'nous'){
+            $this->verbe = 'allons';
+        }
+    }
+}
+
+
+
+$phrase1=new Phrase('je','vais','au ciné');
+$phrase1->affichePhrase();
+$phrase1->mettrePluriel();
+$phrase1->affichePhrase();
+
+$phrase1=new Phrase('je','vais','au ciné');
+$phrase1->affichePhrase();
+<?php
+
+$time = localtime(time(), true);
+
+class Destruct {
+
+    function __destruct() {
+        echo "<br>Destruction effectuée";
+    }
+}
+
+
+class Horloge extends Destruct {
+
+
+    function time($time) {
+        echo $time['tm_hour'].' : '.$time['tm_min'];
+        header('refresh:30');
+    }
+}
+
+
+
+$tic = new Horloge;
+
+$tic->time($time);
+<?php
+
+class VoitureMoteur {
+    protected $kilometre;
+    protected $marque;
+    protected $modele;
+    protected $prix;
+    protected $couleur;
+
+    // public function __construct($marque) {
+    //     $this->marque = $marque;
+    // }
+
+    function deplacement($km) {
+        $this->kilometre += $km;
+        echo "J'avance <br>";
+        if ($this->kilometre >= 15000) {
+            echo 'Vous avez atteinds '.$this->kilometre.'Km vous devez effectuer un entretien.<br>';
+        }
+    }
+
+    function getKm() {
+        return $this->kilometre;
+    }
+
+    function setMarque($mrq) {
+        $this->marque = $mrq;
+    }
+
+    function setModele($mdl) {
+        $this->modele = $mdl;
+    }
+
+    function setCouleur($coul) {
+        $this->couleur = $coul;
+    }
+
+    function setPrix($prix) {
+        $this->prix = $prix;
+    }
+
+    function doubler(Voiture $autre) {
+        echo "La ".$this->modele." double la ".$autre->marque;
+    }
+    function __destruct() {
+        echo "Véhicule détruit \n";
+    }
+}
+
+
+class Voiture extends VoitureMoteur {
+    private $vitesse = 0;
+    private $rapport = 0;
+
+    function setVit($vit) {
+        $this->vitesse = $vit;
+    }
+
+    function passerVitesse() {
+        $this->vitesse += 150;
+        $this->rapport += 1;
+        echo "Je passe la vitesse n°".$this->rapport."<br>";
+    }
+
+    function avance() {
+        parent::deplacement($this->vitesse);
+    }
+}
+
+
+$car1 = new Voiture('pijot');
+
+$carA = &$car1;
+$car1->__destruct();
+$car2 = new Voiture('béhème');
+xdebug_debug_zval('carA');
+$car1->passerVitesse();
+$car1->avance();
+$car1->deplacement(150);
+
+$car1->doubler($car2);
