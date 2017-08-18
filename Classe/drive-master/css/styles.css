@@ -1,0 +1,13 @@
+.wrapper {
+  margin:10;
+  padding:10;
+  background: #e5ba5f url(/img/fond.png) no-repeat center fixed;
+  -webkit-background-size: cover; /* pour anciens Chrome et Safari */
+  background-size: cover; /* version standardisée */
+}
+.jumbotron {
+  background: #e5ba5f;
+}
+.font {
+  color: white;
+}
